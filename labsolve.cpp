@@ -614,5 +614,153 @@ int main() {
     return 0; // Exit successfully
 }
 
+ //--------------------------------------------------
+ // Write down a C++ program to find out the largest value from a set of numbers
+
+ #include <iostream>
+#include <climits> // For INT_MIN constant
+
+using namespace std;
+
+class NumberProcessor {
+public:
+    int findLargestNumber(const int numbers[], int size) {
+        if (size <= 0) {
+            cout << "Invalid size of the array." << endl;
+            return INT_MIN; // Return a minimum integer value as an error indicator
+        }
+
+        int largestNumber = numbers[0]; // Assume the first number is the largest
+
+        for (int i = 1; i < size; ++i) {
+            if (numbers[i] > largestNumber) {
+                largestNumber = numbers[i];
+            }
+        }
+
+        return largestNumber;
+    }
+};
+
+int main() {
+    NumberProcessor numberProcessor;
+
+    int size;
+
+    // Get user input for the size of the array
+    cout << "Enter the size of the array: ";
+    cin >> size;
+
+    // Check if the input size is valid
+    if (size <= 0) {
+        cout << "Please enter a valid size for the array." << endl;
+        return 1; // Exit with an error code
+    }
+
+    // Get user input for the numbers in the array
+    int numbers[size];
+    cout << "Enter " << size << " numbers, separated by spaces:" << endl;
+
+    for (int i = 0; i < size; ++i) {
+        cin >> numbers[i];
+    }
+
+    // Find and print the largest number
+    int largestNumber = numberProcessor.findLargestNumber(numbers, size);
+
+    if (largestNumber != INT_MIN) {
+        cout << "The largest number is: " << largestNumber << endl;
+    } else {
+        cout << "Error finding the largest number." << endl;
+    }
+
+    return 0; // Exit successfully
+}
+  
+//-----------------------------------------------------------------------------------------------
+//Write down a C++program to calculate matrix addition
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Matrix {
+private:
+    vector<vector<int>> data;
+
+public:
+    Matrix(int rows, int cols) : data(rows, vector<int>(cols, 0)) {}
+
+    void inputMatrix() {
+        cout << "Enter matrix elements:" << endl;
+        for (int i = 0; i < data.size(); ++i) {
+            for (int j = 0; j < data[0].size(); ++j) {
+                cout << "Enter element at position (" << i + 1 << ", " << j + 1 << "): ";
+                cin >> data[i][j];
+            }
+        }
+    }
+
+    void displayMatrix() const {
+        cout << "Matrix:" << endl;
+        for (const auto& row : data) {
+            for (int element : row) {
+                cout << element << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    Matrix operator+(const Matrix& other) const {
+        if (data.size() != other.data.size() || data[0].size() != other.data[0].size()) {
+            cerr << "Matrix addition is not possible. Matrices must have the same dimensions." << endl;
+            return *this; // Return the original matrix
+        }
+
+        Matrix result(data.size(), data[0].size());
+
+        for (int i = 0; i < data.size(); ++i) {
+            for (int j = 0; j < data[0].size(); ++j) {
+                result.data[i][j] = data[i][j] + other.data[i][j];
+            }
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    int rows, cols;
+
+    // Get user input for matrix dimensions
+    cout << "Enter the number of rows for matrices: ";
+    cin >> rows;
+
+    cout << "Enter the number of columns for matrices: ";
+    cin >> cols;
+
+    // Create two matrices and input their elements
+    Matrix matrix1(rows, cols);
+    matrix1.inputMatrix();
+
+    Matrix matrix2(rows, cols);
+    matrix2.inputMatrix();
+
+    // Display the input matrices
+    cout << "\nInput Matrices:\n";
+    matrix1.displayMatrix();
+    cout << endl;
+    matrix2.displayMatrix();
+    cout << endl;
+
+    // Calculate and display the result of matrix addition
+    Matrix resultMatrix = matrix1 + matrix2;
+    cout << "Result of Matrix Addition:\n";
+    resultMatrix.displayMatrix();
+
+    return 0; // Exit successfully
+}
+
 
 
