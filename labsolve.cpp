@@ -483,5 +483,136 @@ int main() {
     return 0; // Exit successfully
 }
 
+//--------------------------------------------------------------------------
+//Write down a C++ program to test the correctness of input data.
+
+#include <iostream>
+
+using namespace std;
+
+class InputTester {
+public:
+    bool isInteger(const string& str) {
+        for (char ch : str) {
+            if (!isdigit(ch)) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main() {
+    InputTester inputTester;
+
+    string userInput;
+
+    // Get user input
+    cout << "Enter an integer: ";
+    getline(cin, userInput);
+
+    // Test the correctness of the input data and print the result
+    if (inputTester.isInteger(userInput)) {
+        cout << "Input is a valid integer." << endl;
+        int integerValue = stoi(userInput); // Convert string to integer
+        cout << "Integer value: " << integerValue << endl;
+    } else {
+        cout << "Invalid input. Please enter a valid integer." << endl;
+    }
+
+    return 0; // Exit successfully
+}
+
+//----------------------------------------------------------------------------------------------
+//Write down a C++ program to print a character and a strings
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Printer {
+public:
+    void printCharacter(char myChar) {
+        cout << "Character: " << myChar << endl;
+    }
+
+    void printString(const string& myString) {
+        cout << "String: " << myString << endl;
+    }
+};
+
+int main() {
+    Printer printer;
+
+    // Print a character
+    char myChar = 'A';
+    printer.printCharacter(myChar);
+
+    // Print a string
+    string myString = "Hello, World!";
+    printer.printString(myString);
+
+    return 0; // Exit successfully
+}
+
+ //----------------------------------------------------------------------------------------------
+ // Write down a C++ program to count the number of boys whose height>65inch and weight>68kg
+
+ #include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Boy {
+public:
+    string name;
+    double height;
+    double weight;
+
+    Boy(const string& n, double h, double w) : name(n), height(h), weight(w) {}
+
+    bool isTallAndHeavy() const {
+        return (height > 65.0 && weight > 68.0);
+    }
+};
+
+class BoysGroup {
+private:
+    vector<Boy> boys;
+
+public:
+    void addBoy(const Boy& boy) {
+        boys.push_back(boy);
+    }
+
+    int countTallAndHeavyBoys() const {
+        int count = 0;
+        for (const Boy& boy : boys) {
+            if (boy.isTallAndHeavy()) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+int main() {
+    BoysGroup boysGroup;
+
+    // Adding boys to the group
+    boysGroup.addBoy(Boy("John", 70.0, 75.0));
+    boysGroup.addBoy(Boy("Mike", 64.0, 70.0));
+    boysGroup.addBoy(Boy("Alex", 68.0, 72.0));
+    boysGroup.addBoy(Boy("Chris", 66.0, 69.0));
+
+    // Counting tall and heavy boys
+    int tallAndHeavyCount = boysGroup.countTallAndHeavyBoys();
+
+    cout << "Number of boys with height > 65 inches and weight > 68 kg: " << tallAndHeavyCount << endl;
+
+    return 0; // Exit successfully
+}
+
 
 
