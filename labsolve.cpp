@@ -761,6 +761,97 @@ int main() {
 
     return 0; // Exit successfully
 }
+//--------------------------------------------------
+//factorial
+#include <iostream>
 
+using namespace std;
 
+class FactorialCalculator {
+public:
+    unsigned long long calculateFactorial(int n) {
+        if (n < 0) {
+            cerr << "Factorial is not defined for negative numbers." << endl;
+            return 0; // Return 0 as an error indicator
+        }
+
+        if (n == 0 || n == 1) {
+            return 1; // Factorial of 0 and 1 is 1
+        }
+
+        unsigned long long result = 1;
+
+        for (int i = 2; i <= n; ++i) {
+            result *= i;
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    FactorialCalculator factorialCalculator;
+
+    int number;
+
+    // Get user input for the number
+    cout << "Enter a non-negative integer: ";
+    cin >> number;
+
+    // Calculate and print the factorial of the number
+    unsigned long long factorial = factorialCalculator.calculateFactorial(number);
+
+    if (number >= 0) {
+        cout << "Factorial of " << number << " is: " << factorial << endl;
+    }
+
+    return 0; // Exit successfully
+}
+
+//----------------------------------------------------------
+//C++ program to generate the Fibonacci sequence:
+
+#include <iostream>
+
+using namespace std;
+
+class FibonacciGenerator {
+public:
+    void generateFibonacci(int n) {
+        int first = 0, second = 1;
+
+        cout << "Fibonacci sequence up to " << n << " terms:" << endl;
+
+        for (int i = 0; i < n; ++i) {
+            cout << first << " ";
+
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    FibonacciGenerator fibonacciGenerator;
+
+    int terms;
+
+    // Get user input for the number of terms in the Fibonacci sequence
+    cout << "Enter the number of terms in the Fibonacci sequence: ";
+    cin >> terms;
+
+    // Check if the input is valid
+    if (terms <= 0) {
+        cout << "Please enter a positive integer for the number of terms." << endl;
+        return 1; // Exit with an error code
+    }
+
+    // Generate and print the Fibonacci sequence
+    fibonacciGenerator.generateFibonacci(terms);
+
+    return 0; // Exit successfully
+}
 
